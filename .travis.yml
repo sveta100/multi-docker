@@ -12,7 +12,7 @@ after_success:
     - docker build -t sv/multi-server ./server
     - docker build -t sv/multi-worker ./worker
 # Log in Docker cli
-    - echo "$Docker_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     - docker push sv/multi-client
     - docker push sv/multi-server
     - docker push sv/multi-server
