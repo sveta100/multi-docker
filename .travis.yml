@@ -1,0 +1,19 @@
+services:
+    - docker
+before_install:
+    - docker build -t sv/reat-test -f ./client/Dockerfile.dev ./client
+
+    script:
+        - docker run sv/react-test npm test -- --coverage
+
+after_success:
+    - docker build -t sv/multi-client ./client
+    - docker build -t sv/multi-nginx ./nginx
+    - docker build -t sv/multi-server ./server
+    - docker build -t sv/multi-worker ./worker
+# Log in Docker cli
+    - echo "$Docker_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push sv/multi-client ./client
+    - docker push sv/multi-server ./server
+    - docker push sv/multi-server ./server
+    - docker push sv/multi-worker ./worker
