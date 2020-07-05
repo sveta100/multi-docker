@@ -3,19 +3,19 @@ sudo: required
 services:
     - docker
 before_install:
-    - docker build -t sv/react -f ./client/Dockerfile.dev ./client
+    - docker build -t svetab/react -f ./client/Dockerfile.dev ./client
 
 script:
-    - docker run -e CI=true sv/react npm test
+    - docker run -e CI=true svetab/react npm test
 
 after_success:
-    - docker build -t sv/multi-client ./client
-    - docker build -t sv/multi-nginx ./nginx
-    - docker build -t sv/multi-server ./server
-    - docker build -t sv/multi-worker ./worker
+    - docker build -t svetab/multi-client ./client
+    - docker build -t svetab/multi-nginx ./nginx
+    - docker build -t svetab/multi-server ./server
+    - docker build -t svetab/multi-worker ./worker
 # Log in Docker cli
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    - docker push sv/multi-client
-    - docker push sv/multi-server
-    - docker push sv/multi-server
-    - docker push sv/multi-worker
+    - docker push svetab/multi-client
+    - docker push svetab/multi-server
+    - docker push svetab/multi-server
+    - docker push svetab/multi-worker
