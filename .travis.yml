@@ -17,5 +17,5 @@ after_success:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
     - docker push svetab/multi-client
     - docker push svetab/multi-server
-    - docker push svetab/multi-server
+    - docker push svetab/multi-nginx
     - docker push svetab/multi-worker
