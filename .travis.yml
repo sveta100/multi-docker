@@ -1,4 +1,3 @@
-sudo: required
 
 services:
     - docker
@@ -20,7 +19,7 @@ after_success:
     - docker push svetab/multi-nginx
     - docker push svetab/multi-worker
 
-deploy
+deploy:
     provider: elasticbeanstalk
     region: eu-west-3
     app: docker-multi
